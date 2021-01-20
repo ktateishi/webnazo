@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>クリア者確認ページ</title>
+    <link rel="stylesheet" th:href="@{/css/bulma.min.css}">
+</head>
+<body>
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">ゲームクリア者一覧</h1>
+            </div>
+        </div>
+    </section>
+
+    <div class="container is-centered">
+        <table class="table is-striped is-fullwidth is-hoverable">
+            <thead>
+            <tr>
+<!--                <th></th>-->
+                <th>ランキング</th>
+                <th>ユーザー名</th>
+                <th>クリア時刻</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user:${users}">
+                <td th:switch="${user.rank}">
+                    <figure th:case="1" class="image is-32x32">
+                        <img th:src="@{/img/1st.png}">
+                    </figure>
+                    <figure th:case="2" class="image is-32x32">
+                        <img th:src="@{/img/2nd.png}">
+                    </figure>
+                    <figure th:case="3" class="image is-32x32">
+                        <img th:src="@{/img/3rd.png}">
+                    </figure>
+                    <span th:case="*" th:text="${user.rank}"></span>
+                </td>
+<!--                <td th:text="${user.rank}"></td>-->
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.registeredDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
